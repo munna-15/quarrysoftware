@@ -1,0 +1,286 @@
+diff --git a/src/app/globals.css b/src/app/globals.css
+index a2dc41e..7259dfd 100644
+--- a/src/app/globals.css
++++ b/src/app/globals.css
+@@ -1,26 +1,272 @@
+ @import "tailwindcss";
+ 
+ :root {
++  --quarry-blue: #092b59;
++  --quarry-blue-deep: #061d3d;
++  --quarry-white: #ffffff;
++
++  --quarry-ink: #202124;
++  --quarry-body: #64676d;
++  --quarry-muted: #d1d9e5;
++
++  --quarry-border: #e5e7eb;
++  --quarry-border-dark: rgba(255, 255, 255, 0.18);
++
+   --background: #ffffff;
+-  --foreground: #171717;
++  --foreground: #202124;
++
++  --font-body: Arial, Helvetica, sans-serif;
++
++  --page-gutter: clamp(24px, 6vw, 100px);
++  --section-space: clamp(88px, 11vw, 160px);
++
++  --transition-fast: 180ms ease;
++  --transition-base: 300ms ease;
+ }
+ 
+ @theme inline {
+   --color-background: var(--background);
+   --color-foreground: var(--foreground);
+-  --font-sans: var(--font-geist-sans);
+-  --font-mono: var(--font-geist-mono);
++  --font-sans: var(--font-body);
+ }
+ 
+-@media (prefers-color-scheme: dark) {
+-  :root {
+-    --background: #0a0a0a;
+-    --foreground: #ededed;
+-  }
++* {
++  box-sizing: border-box;
++}
++
++html {
++  scroll-behavior: smooth;
++  scroll-padding-top: 100px;
++  background: var(--quarry-white);
+ }
+ 
+ body {
++  margin: 0;
++  min-height: 100vh;
+   background: var(--background);
+   color: var(--foreground);
+-  font-family: Arial, Helvetica, sans-serif;
++  font-family: var(--font-body);
++  font-size: 16px;
++  line-height: 1.65;
++  -webkit-font-smoothing: antialiased;
++  -moz-osx-font-smoothing: grayscale;
++}
++
++body,
++button,
++input,
++textarea,
++select {
++  font-family: var(--font-body);
++}
++
++button,
++input,
++textarea,
++select {
++  font-size: inherit;
++}
++
++button,
++a {
++  -webkit-tap-highlight-color: transparent;
++}
++
++a {
++  color: inherit;
++  text-decoration: none;
++}
++
++button {
++  color: inherit;
++}
++
++button:focus-visible,
++a:focus-visible,
++input:focus-visible,
++textarea:focus-visible,
++select:focus-visible {
++  outline: 2px solid currentColor;
++  outline-offset: 5px;
++}
++
++img,
++video,
++svg {
++  display: block;
++  max-width: 100%;
++}
++
++img,
++video {
++  height: auto;
++}
++
++::selection {
++  background: var(--quarry-blue);
++  color: var(--quarry-white);
++}
++
++.container {
++  width: 100%;
++  max-width: 1600px;
++  margin-inline: auto;
++  padding-inline: var(--page-gutter);
++}
++
++.section {
++  position: relative;
++  padding-block: var(--section-space);
++}
++
++.section--white {
++  background: var(--quarry-white);
++  color: var(--quarry-ink);
++}
++
++.section--blue {
++  background: var(--quarry-blue);
++  color: var(--quarry-white);
++}
++
++.section--deep-blue {
++  background: var(--quarry-blue-deep);
++  color: var(--quarry-white);
++}
++
++.section-heading {
++  max-width: 900px;
++  margin: 0;
++  font-size: clamp(2.5rem, 5.5vw, 5.5rem);
++  font-weight: 500;
++  line-height: 1.04;
++  letter-spacing: -0.065em;
++}
++
++.section-description {
++  max-width: 620px;
++  margin-top: 24px;
++  color: var(--quarry-body);
++  font-size: clamp(1rem, 1.3vw, 1.125rem);
++  line-height: 1.85;
++}
++
++.section--blue .section-description,
++.section--deep-blue .section-description {
++  color: var(--quarry-muted);
++}
++
++.eyebrow {
++  display: inline-block;
++  margin-bottom: 22px;
++  color: var(--quarry-body);
++  font-size: 0.75rem;
++  font-weight: 600;
++  letter-spacing: 0.14em;
++  line-height: 1.5;
++  text-transform: uppercase;
++}
++
++.section--blue .eyebrow,
++.section--deep-blue .eyebrow {
++  color: var(--quarry-muted);
++}
++
++/* Diagonal transitions between major sections */
++
++.diagonal-top {
++  clip-path: polygon(0 5vw, 100% 0, 100% 100%, 0 100%);
++  padding-top: calc(var(--section-space) + 5vw);
++}
++
++.diagonal-bottom {
++  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5vw), 0 100%);
++  padding-bottom: calc(var(--section-space) + 5vw);
++}
++
++/* Plain text links: no decorative arrows or button-like styling */
++
++.text-link {
++  display: inline-flex;
++  width: fit-content;
++  align-items: center;
++  color: inherit;
++  font-weight: 500;
++  text-decoration: underline;
++  text-decoration-color: currentColor;
++  text-decoration-thickness: 1px;
++  text-underline-offset: 6px;
++  transition:
++    opacity var(--transition-fast),
++    text-underline-offset var(--transition-fast);
++}
++
++.text-link:hover {
++  opacity: 0.72;
++  text-underline-offset: 9px;
++}
++
++/* Fine dividers */
++
++.divider {
++  width: 100%;
++  height: 1px;
++  background: var(--quarry-border);
++}
++
++.section--blue .divider,
++.section--deep-blue .divider {
++  background: var(--quarry-border-dark);
++}
++
++/* Motion accessibility */
++
++@media (prefers-reduced-motion: reduce) {
++  *,
++  *::before,
++  *::after {
++    scroll-behavior: auto !important;
++    animation-duration: 0.01ms !important;
++    animation-iteration-count: 1 !important;
++    transition-duration: 0.01ms !important;
++  }
++}
++
++/* Mobile foundation */
++
++@media (max-width: 768px) {
++  :root {
++    --page-gutter: 22px;
++    --section-space: 84px;
++  }
++
++  body {
++    font-size: 15px;
++  }
++
++  .section-heading {
++    font-size: clamp(2.35rem, 10vw, 4rem);
++    letter-spacing: -0.055em;
++  }
++
++  .section-description {
++    margin-top: 18px;
++    line-height: 1.8;
++  }
++
++  .diagonal-top {
++    clip-path: polygon(0 24px, 100% 0, 100% 100%, 0 100%);
++    padding-top: calc(var(--section-space) + 24px);
++  }
++
++  .diagonal-bottom {
++    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 24px), 0 100%);
++    padding-bottom: calc(var(--section-space) + 24px);
++  }
++}
++
++@media (max-width: 420px) {
++  :root {
++    --page-gutter: 18px;
++  }
+ }
