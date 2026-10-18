@@ -49,10 +49,7 @@ export default function Hero() {
         return;
       }
 
-      // Keep the heading free from scale/transform animation.
-      gsap.set(background, {
-        autoAlpha: 0,
-      });
+      gsap.set(background, { autoAlpha: 0 });
 
       gsap.set(image, {
         scale: 1.055,
@@ -142,8 +139,11 @@ export default function Hero() {
       aria-labelledby="quarry-hero-heading"
       className="relative isolate flex h-[100svh] min-h-[620px] max-h-[1100px] items-center overflow-hidden bg-[#071629] text-white sm:min-h-[680px]"
     >
-      {/* Background image */}
-      <div ref={backgroundRef} aria-hidden="true" className="absolute inset-0">
+      <div
+        ref={backgroundRef}
+        aria-hidden="true"
+        className="absolute inset-0 opacity-0 invisible"
+      >
         <div
           ref={imageRef}
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -153,18 +153,15 @@ export default function Hero() {
         />
 
         <div className="absolute inset-0 bg-[#061426]/35" />
-
         <div className="absolute inset-0 bg-gradient-to-r from-[#061426]/85 via-[#061426]/55 to-[#061426]/20" />
-
         <div className="absolute inset-0 bg-gradient-to-t from-[#061426]/65 via-transparent to-[#061426]/25" />
       </div>
 
-      {/* Hero content */}
       <div className="relative z-10 mx-auto w-full max-w-[1440px] px-6 pb-12 pt-28 sm:px-10 sm:pb-16 md:px-14 lg:px-20">
         <div className="max-w-[1050px]">
           <p
             ref={eyebrowRef}
-            className="mb-6 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/75 sm:mb-8 sm:text-xs"
+            className="invisible mb-6 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/75 sm:mb-8 sm:text-xs"
           >
             Quarry Software
           </p>
@@ -172,7 +169,7 @@ export default function Hero() {
           <h1
             ref={headingRef}
             id="quarry-hero-heading"
-            className="max-w-[1000px] text-[clamp(3.15rem,7.4vw,7.4rem)] font-semibold leading-[0.98] tracking-[-0.045em] text-white [text-wrap:balance]"
+            className="invisible max-w-[1000px] text-[clamp(3.15rem,7.4vw,7.4rem)] font-semibold leading-[0.98] tracking-[-0.045em] text-white [text-wrap:balance]"
           >
             Software,
             <br />
@@ -183,7 +180,7 @@ export default function Hero() {
 
           <p
             ref={descriptionRef}
-            className="mt-7 max-w-[540px] text-sm leading-7 text-white/75 sm:mt-9 sm:text-base sm:leading-8 md:text-lg"
+            className="invisible mt-7 max-w-[540px] text-sm leading-7 text-white/75 sm:mt-9 sm:text-base sm:leading-8 md:text-lg"
           >
             Websites, custom software and intelligent automation designed around
             the way your business works.
