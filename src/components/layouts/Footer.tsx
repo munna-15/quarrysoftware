@@ -114,12 +114,12 @@ export default function Footer() {
               className="inline-flex rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#456653]"
             >
               <Image
-                src="/images/quarry/logo.svg"
+                src="/images/quarry/logo.png"
                 alt="Quarry Software"
-                width={320}
-                height={80}
+                width={220}
+                height={40}
                 priority
-                className="h-auto w-[310px] object-contain sm:w-[310px]"
+                className="h-auto w-[210px] object-contain sm:w-[210px]"
               />
             </Link>
 

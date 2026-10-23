@@ -1,10 +1,11 @@
 "use client";
-
+import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { MouseEvent } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, X } from "lucide-react";
+
 
 const navigation = [
   {
@@ -258,14 +259,16 @@ export default function Navbar() {
               href="/"
               aria-label="Quarry Software home"
               onClick={handleNavigationClick("/")}
-              className="flex w-fit min-w-0 shrink-0 flex-col !text-white"
+              className="flex w-fit min-w-0 shrink-0 items-center"
             >
-              <span className="text-[22px] font-semibold leading-[0.95] tracking-[0.12em] !text-white sm:text-[25px]">
-                QUARRY
-              </span>
-              <span className="mt-[7px] text-[8px] font-semibold leading-none tracking-[0.32em] !text-white/65 sm:text-[9px]">
-                SOFTWARE
-              </span>
+              <Image
+                src="/images/quarry/logo-white.png"
+                alt="Quarry Software"
+                width={220}
+                height={70}
+                priority
+                className="h-auto w-[150px] object-contain sm:w-[175px]"
+              />
             </Link>
 
             {/* Desktop navigation */}
