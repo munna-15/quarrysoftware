@@ -262,7 +262,7 @@ export default function Navbar() {
               className="flex w-fit min-w-0 shrink-0 items-center"
             >
               <Image
-                src="/images/quarry/logo-white.png"
+                src="/images/quarry/logo.png"
                 alt="Quarry Software"
                 width={220}
                 height={70}
